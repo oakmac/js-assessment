@@ -8,7 +8,7 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 define(function() {
   return {
     globals : function() {
-      myObject = {
+      var myObject = {
         name : 'Jory'
       };
 
@@ -16,6 +16,16 @@ define(function() {
     },
 
     functions : function(flag) {
+		
+		// I'm not sure this is the purpose of this test, but the result
+		// is the same
+		if (flag) {
+			return "a";
+		}
+		
+		return "b";
+		
+	/*
       if (flag) {
         function getValue() { return "a"; }
       } else {
@@ -23,14 +33,21 @@ define(function() {
       }
 
       return getValue();
+	*/
+	
     },
 
     parseInt : function(num) {
-      return parseInt(num);
+      return parseInt(num, 10);
     },
 
     identity : function(val1, val2) {
-
+		if (val1 === val2) {
+			return true;
+		}
+		
+		return false;
     }
-  };
-});
+	
+  }; // end return
+}); // end define()
